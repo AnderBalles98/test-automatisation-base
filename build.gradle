@@ -24,6 +24,38 @@ dependencies {
             'junit:junit:4.13.2'
 }
 
-test {
-    useJUnitPlatform()
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
+
+tasks.register('karateDebug', JavaExec) {
+    classpath = sourceSets.test.runtimeClasspath
+    main = 'com.intuit.karate.cli.Main'
+}
+
+sourceSets {
+    test {
+        java {
+            srcDir file('src/test/java')
+            exclude '**/*UiRunner*.java'
+        }
+        resources {
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+    }
+}
+
+test {
+    systemProperties System.getProperties()
+    systemProperty "file.encoding", "utf-8"
+    // pull karate options into the runtime
+    systemProperty "karate.options", System.properties.getProperty("karate.options")
+    // pull karate env into the runtime
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    // ensure tests are always run
+    outputs.upToDateWhen { false }
+}
+
+gradle.startParameter.continueOnFailure = true
