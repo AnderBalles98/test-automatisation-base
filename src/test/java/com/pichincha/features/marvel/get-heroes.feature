@@ -53,6 +53,6 @@ Feature: HU-001 Micro consulta heroes
   @id:3 @HU-001-consulta-fallida-heroe-especifico
   Scenario: HU-001 - Caso 03 - Consulta fallida de heroe especifico - karate
 
-    Given path '/anballes/api/characters/999'
+    Given path '/anballes/api/characters/99999'
     When method GET
     Then status 404

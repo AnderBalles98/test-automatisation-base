@@ -36,7 +36,7 @@ Feature: HU-003 Micro Actualizacion de heroes
   @id:2 @HU-003-actualizacion-heroe-fallida
   Scenario: HU-003 - Caso 02 - Actualizacion fallida de heroe - karate
 
-    Given path '/anballes/api/characters/999'
+    Given path '/anballes/api/characters/99999'
     * def new_jsonreq = read('classpath:../data/marvel/create-hero.json')
     And request new_jsonreq
     When method PUT
