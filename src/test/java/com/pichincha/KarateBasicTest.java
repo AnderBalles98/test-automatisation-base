@@ -13,7 +13,7 @@ public class KarateBasicTest {
     @Test
     public void testRunner() {
         Results results = Runner.path("src/test/java/com/pichincha/features")
-                .tags("@HU001").outputCucumberJson(true).parallel(1);;
+                .tags("@HU001").outputCucumberJson(true).parallel(1);
         assertEquals(0, results.getFailCount(), results.getErrorMessages());
     }
 

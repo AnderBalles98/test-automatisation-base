@@ -1,6 +1,6 @@
 function() {
   var config = {
-    marvel_base_url: "http://bp-se-test-cabcd9b246a5.herokuapp.com"
+    marvel_base_url: "http://localhost:8080"
   }
   return config;
 }
