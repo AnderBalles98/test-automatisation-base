@@ -7,6 +7,10 @@ Feature: HU-001 Micro consulta heroes
   @id:1 @HU-001-consulta-todos-heroes-exitosa
   Scenario: HU-001 - Caso 01 - Consulta exitosa de todos los heroes - karate
 
+    Given path '/anballes/api/characters'
+    When method GET
+    Then status 200
+    And def currentLength = response.length
     * def jsonreq = read('classpath:../data/marvel/create-hero.json')
     And jsonreq.name = "Hero 1"
     And request jsonreq
@@ -24,7 +28,7 @@ Feature: HU-001 Micro consulta heroes
     Given path '/anballes/api/characters'
     When method GET
     Then status 200
-    And assert response.length == 2
+    And assert response.length == currentLength + 2
     Given path '/anballes/api/characters/' + heroe1_id
     When method DELETE
     Then status 204
